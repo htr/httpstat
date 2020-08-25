@@ -23,6 +23,7 @@ END
 green="\033[32m"
 cyan="\033[36m"
 white="\033[37m"
+black="\033[30m"
 reset="\033[0m"
 
 while (( $# > 0 ))
@@ -152,7 +153,7 @@ b002="$cyan$(fmtb "$time_pretransfer")$reset"
 b003="$cyan$(fmtb "$time_starttransfer")$reset"
 b004="$cyan$(fmtb "$time_total")$reset"
 
-https_template="$white
+https_template="$black
   DNS Lookup   TCP Connection   SSL Handshake   Server Processing   Content Transfer$reset
 [   ${a000}  |     ${a001}    |    ${a002}    |      ${a003}      |      ${a004}     ]
              |                |               |                   |                  |
@@ -163,7 +164,7 @@ https_template="$white
                                                                                  total:${b004}
 "
 
-http_template="$white
+http_template="$black
   DNS Lookup   TCP Connection   Server Processing   Content Transfer$reset
 [   ${a000}  |     ${a001}    |      ${a003}      |      ${a004}     ]
              |                |                   |                  |
@@ -179,7 +180,7 @@ http_template="$white
     # Print header
     cat "$head" \
         | perl -pe 's/^(HTTP)(.*)$/'"$green"'$1'"$reset""$cyan"'$2'"$reset"'/g' \
-        | perl -pe 's/^(.*?): (.*)$/'"$white"'$1: '"$cyan"'$2/g'
+        | perl -pe 's/^(.*?): (.*)$/'"$black"'$1: '"$cyan"'$2/g'
     printf "$reset"
 
     # Print body
